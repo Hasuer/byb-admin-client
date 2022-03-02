@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+## 做项目时遇到的问题
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 'useEffect'来代替类式组件中的`ComponentDidMount`,`ComponentDidUpdate`,`ComponentWillUnmount`
 
-## Available Scripts
+- <Navigate to='/'>代替<Redirect to="/">
 
-In the project directory, you can run:
+- 例如path = ’/‘ 的时候是 Layout 组件，我期望在path = '/' 的时候重定向到 ‘/home’，该如何实现？
 
-### `npm start`
+    - 在 path='/' 的组件 App 组件里加上了 loca.pathname === '/' ? <Navigate replace to='/home' /> : null这句，可以实现在 App 组件重定向到 /home， 但是前面必须加上是否处于当前路由的判断，否则会死循环
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 使用PubSub来实现兄弟组件的通信
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 单独配置router.js文件来配置路由，在<App/>中引入，配合使用<Outlet/>
 
-### `npm test`
+- 将影响渲染的操作放在 useLayoutEffect 中，比如在MySider模块中动态生成menu的openKeys属性需要在渲染前完成,我就将动态获取的节点函数(getMenuNode()函数)放在了useLayoutEffect中，使得执行完在渲染。并且结合useRef(),每次获取都是最新的值。 https://zhuanlan.zhihu.com/p/348701319.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 遇到了这个问题 https://www.5axxw.com/questions/content/zgs4nh#question-recommend 三天才解决这个bug，这个解答是好的，但是不知道是什么原理

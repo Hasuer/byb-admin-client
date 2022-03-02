@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
-import { Form, Input, Button, Checkbox, message } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { useNavigate, Navigate } from 'react-router-dom'
-import './index.less'
-import { reqAddUser, reqLogin } from '../../api' // 默认暴露不用写大括号，分别暴露需要
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { Button, Checkbox, Form, Input, message } from 'antd'
+import React from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { reqLogin } from '../../api' // 默认暴露不用写大括号，分别暴露需要
 import memoryUtil from '../../utils/memoryUtil'
 import storageUtil from '../../utils/storageUtil'
+import './index.less'
 
 export default function Login() {
   const navigate = useNavigate()
-  const onFinish = async (values) => {
+  const onFinish = async values => {
     console.log('Received values of form: ', values)
     const { username, password } = values
     const result = await reqLogin(username, password) //{status: 0, data: user} {status:1, msg:登录失败}
@@ -29,7 +29,7 @@ export default function Login() {
     }
   }
 
-  const tempOnFinish = (values) => {
+  const tempOnFinish = values => {
     if (values.username === 'admin' && values.password === 'admin') {
       //登录成功
       message.success('登录成功')
@@ -56,7 +56,7 @@ export default function Login() {
           name="normal_login"
           className="login-form"
           initialValues={{
-            remember: true,
+            remember: true
           }}
           onFinish={tempOnFinish}
         >
@@ -65,20 +65,20 @@ export default function Login() {
             rules={[
               {
                 required: true,
-                message: 'Please input your Username!',
+                message: 'Please input your Username!'
               },
               {
                 min: 4,
-                message: 'The min length is 4.',
+                message: 'The min length is 4.'
               },
               {
                 max: 10,
-                message: 'The max length is 10.',
+                message: 'The max length is 10.'
               },
               {
                 pattern: /^[a-zA-Z0-9_]+$/,
-                message: "Containd by numbers, letters and '_'",
-              },
+                message: "Containd by numbers, letters and '_'"
+              }
             ]}
           >
             <Input
@@ -91,8 +91,8 @@ export default function Login() {
             rules={[
               {
                 required: true,
-                message: 'Please input your Password!',
-              },
+                message: 'Please input your Password!'
+              }
             ]}
           >
             <Input
@@ -112,11 +112,7 @@ export default function Login() {
           </Form.Item>
 
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
+            <Button type="primary" htmlType="submit" className="login-form-button">
               Log in
             </Button>
             <a href="#">register now!</a>
