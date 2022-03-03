@@ -1,3 +1,3 @@
 export default {
-  user: {},
+  user: {} // { username: 'admin', password: 'password', id: 1 }
 }

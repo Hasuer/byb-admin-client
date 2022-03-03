@@ -15,6 +15,7 @@ export default function MySider() {
   const toggleCollapsed = (_, iscollapsed) => {
     setCollpased(iscollapsed)
   }
+  //动态获取展示列表
   const getMenuNode = (menuList, hasIcon) => {
     return menuList.map(item => {
       if (item.children) {
@@ -47,7 +48,6 @@ export default function MySider() {
   }
 
   useEffect(() => {
-    console.log('调用useEffect')
     setNodes(getMenuNode(menuList, true))
     const token = PubSub.subscribe('collapsed', toggleCollapsed)
     return () => PubSub.unsubscribe(token)

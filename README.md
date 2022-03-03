@@ -15,3 +15,5 @@
 - 将影响渲染的操作放在 useLayoutEffect 中，比如在MySider模块中动态生成menu的openKeys属性需要在渲染前完成,我就将动态获取的节点函数(getMenuNode()函数)放在了useLayoutEffect中，使得执行完在渲染。并且结合useRef(),每次获取都是最新的值。 https://zhuanlan.zhihu.com/p/348701319.
 
 - 遇到了这个问题 https://www.5axxw.com/questions/content/zgs4nh#question-recommend 三天才解决这个bug，这个解答是好的，但是不知道是什么原理
+
+- antd中，Modal 和Form一起使用时，Form表单清空 https://blog.csdn.net/qq_37233023/article/details/108832227
