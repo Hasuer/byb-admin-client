@@ -18,7 +18,6 @@ export default function Admin() {
   return (
     <Layout className="layout">
       <MySider />
-
       <Layout>
         <MyHeader />
         <Content className="content">

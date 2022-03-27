@@ -110,7 +110,6 @@ export default function Login() {
               Forgot password
             </a>
           </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
               Log in
